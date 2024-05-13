@@ -1,0 +1,27 @@
+{
+  "name": "ecommerce_using_mern_stack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chiranjivikeshav/eCommerce_using_MERN_stack.git"
+  },
+  "author": "ckeshav",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chiranjivikeshav/eCommerce_using_MERN_stack/issues"
+  },
+  "homepage": "https://github.com/chiranjivikeshav/eCommerce_using_MERN_stack#readme",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongoose": "^8.3.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
