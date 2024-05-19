@@ -1,5 +1,11 @@
 
-
+*{
+  font-family: "Raleway", sans-serif;
+  
+}
+body{
+  background: #f9e9de;
+}
 .nav-ul {
   list-style-type: none;
   margin: 0;
@@ -7,7 +13,8 @@
   text-align: center;
   overflow: hidden;
   height:70px;
-  background-color: #333; /* Background color of the navigation */
+  font-size: 20px;
+  background-color:	#002147; /* Background color of the navigation */
 }
 
 .nav-ul li {
@@ -25,6 +32,23 @@
 .nav-ul li a:hover {
   background-color: #111; /* Background color on hover */
 }
+.auth{
+  font-size: 22px;
+  height:40px;
+  width: 80px;
+  float: right;
+  margin-top: -65px;
+  margin-right: 40px;
+  cursor: pointer;
+  font-weight: 00;
+  color:white;
+  background-color: #ba8300;
+    text-decoration: none;
+  text-align: center;
+  padding-top:9px ;
+}
+
+
 
 
 .footer{
@@ -34,19 +58,24 @@
   /* padding-top: 20px; */
   width:100%;
   height:60px;
-  background-color: #333;
+  background-color: 	#002147;
   color:white;
 }
 
 .sign-up-card {
   width: 320px;
   padding: 20px;
-  height:350px;
+  height:auto;
   margin:auto;
   margin-top: 60px;;
   border-radius: 10px;
   background-color: #fff;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); /* Box shadow for the card */
+  text-align: center;
+  h4 a{
+    text-decoration: none;
+
+  }
 }
 
 .inputBox {
@@ -62,18 +91,73 @@
   margin: 10px;
   padding: 10px;
   width: calc(100% - 20px);
-  background-color: #007bff;
+  background-color: #ba8300;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
 }
 
-.submitButton:hover {
-  background-color: #0056b3;
+.submitButton:hover,.auth:hover {
+  background-color: #c5aa6a;
 }
 
-h1 {
+
+.sign-up-card h1 {
   color: #333;
   text-align: center;
+}
+
+
+/* Add Product page  */
+
+.add_product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 70px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Arial', sans-serif;
+}
+
+.add_product h1 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.add_product input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.add_product input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.add_product .add-button {
+  padding: 10px 20px;
+  background-color: #ba8300;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.add_product .add-button:hover {
+  background-color: #c5aa6a;
 }
