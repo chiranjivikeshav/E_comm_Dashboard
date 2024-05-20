@@ -14,7 +14,17 @@ const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error,setError] = useState(false)
+
   const handleLogin = async () => {
+      if(!email||!password){
+      setError(true);
+      return false;
+      }
+
+
+
+
       const response = await fetch('http://localhost:5000/login', {
       method: "post",
       body: JSON.stringify({ email, password }),
@@ -52,7 +62,9 @@ const Login = () => {
     <div className="sign-up-card">
       <h1>Login</h1>
       <input className='inputBox' type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Enter Email' />
+      {error && !email && <span>Enter valid details</span>}
       <input className='inputBox' type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Enter Password' />
+      {error && !password && <span>Enter valid details</span>}
       <button onClick={handleLogin} className='submitButton'>Sign In</button>
       <hr></hr>
       <h4>Don't have account yet?<Link to="/signup"> Sign Up</Link></h4>

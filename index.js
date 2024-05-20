@@ -52,6 +52,27 @@ app.post("/add-product",async (req,res)=>{
     res.send(result);
 })
 
+app.get("/products",async (req,res)=>{
+    let products = await Product.find();
+    if(products.length>0){
+        res.send(products);
+    }else{
+        res.send({"message":"No Products found"})
+    }
+})
 
+app.delete("/product/:id",async (req,res)=>{
+      const result = await Product.deleteOne({_id:req.params.id});
+      res.send(result);
+})
+
+app.get("/product/:id", async (req,res)=>{
+    let result = await Product.findOne({_id : req.params.id});
+    if(result){
+        res.send(result);
+    }else{
+        res.send({result:"Record Not found"});
+    }
+})
 
 app.listen(5000);
