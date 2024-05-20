@@ -12,7 +12,7 @@ const SignUp = () => {
     if (auth) {
       navigate('/')
     }
-  })
+  },[])
 
   const collectData = async () => {
     if(!name||!email||!password){

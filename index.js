@@ -1,4 +1,4 @@
-const express  = require('express');
+const express = require('express');
 const app = express();
 const cors = require('cors');
 app.use(express.json());
@@ -31,48 +31,58 @@ app.post("/register", async (req, res) => {
 
 
 
-app.post("/login",async (req,res)=>{
-    if(req.body.password && req.body.email){
+app.post("/login", async (req, res) => {
+    if (req.body.password && req.body.email) {
         let user = await User.findOne(req.body);
-        if(user){
+        if (user) {
             user.password = undefined;
-            res.status(200).json({ message: 'Loged in successfully',user});
+            res.status(200).json({ message: 'Loged in successfully', user });
         }
-        else{
+        else {
             return res.status(400).json({ message: 'Invalid Credentials' });
         }
-    } else{
+    } else {
         res.status(500).json({ message: 'Please fill the details' });
     }
 })
 
-app.post("/add-product",async (req,res)=>{
+app.post("/add-product", async (req, res) => {
     let product = new Product(req.body);
     let result = await product.save();
     res.send(result);
 })
 
-app.get("/products",async (req,res)=>{
+app.get("/products", async (req, res) => {
     let products = await Product.find();
-    if(products.length>0){
+    if (products.length > 0) {
         res.send(products);
-    }else{
-        res.send({"message":"No Products found"})
+    } else {
+        res.send({ "message": "No Products found" })
     }
 })
 
-app.delete("/product/:id",async (req,res)=>{
-      const result = await Product.deleteOne({_id:req.params.id});
-      res.send(result);
+app.delete("/product/:id", async (req, res) => {
+    const result = await Product.deleteOne({ _id: req.params.id });
+    res.send(result);
 })
 
-app.get("/product/:id", async (req,res)=>{
-    let result = await Product.findOne({_id : req.params.id});
-    if(result){
-        res.send(result);
-    }else{
-        res.send({result:"Record Not found"});
+app.get("/product/:id", async (req, res) => {
+    const result = await Product.findOne({ _id: req.params.id });
+    if (result) {
+        res.status(200).send(result);
+    } else {
+        res.status(404).send({ result: "Record Not Found" });
     }
+})
+
+app.put("/product/:id",async (req,res)=>{
+    let result = await Product.updateOne(
+        {_id:req.params.id},
+        {
+            $set: req.body
+        }
+    )
+    res.send(result)
 })
 
 app.listen(5000);

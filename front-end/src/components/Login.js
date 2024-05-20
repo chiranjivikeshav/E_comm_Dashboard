@@ -9,7 +9,7 @@ const Login = () => {
     if (auth) {
       navigate('/')
     }
-  })
+  },[])
 
 
   const [email, setEmail] = useState("");
