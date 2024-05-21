@@ -42,8 +42,9 @@ const Login = () => {
         }
       })
       .then(data => {
-        if (data && data.user) {
+        if (data && data.user&&data.auth) {
           localStorage.setItem("user", JSON.stringify(data.user));
+          localStorage.setItem("token", JSON.stringify(data.auth));
           navigate("/");
         } else {
           throw new Error('Invalid response structure');

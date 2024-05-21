@@ -6,6 +6,11 @@
 body{
   background: #f9e9de;
 }
+.logo{
+  position: absolute;
+  margin:25px;
+  color:#ba8300;
+}
 .nav-ul {
   list-style-type: none;
   margin: 0;
@@ -14,6 +19,7 @@ body{
   overflow: hidden;
   height:70px;
   font-size: 20px;
+  padding-left:170px;
   background-color:	#002147; /* Background color of the navigation */
 }
 
@@ -51,17 +57,7 @@ body{
 
 
 
-.footer{
-  /* position:relative; */
-  text-align: center;
-  padding-top: 20px;
-  width:100%;
-  height:100px;
-  background-color: 	#002147;
-  color:white;
-  margin-top: 60px;
-  z-index:-1;
-}
+
 
 .sign-up-card {
   width: 320px;
@@ -186,6 +182,7 @@ body{
   width: 90%;
   margin: 20px auto;
   padding: 10px;
+  min-height: 270px;
   background-color: #f9f9f9;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
@@ -219,7 +216,7 @@ body{
 }
 
 .product-item:hover {
-  background-color: #7ab2e2;
+  background-color: #e7ddc6;
 }
 
 .product-list li {
@@ -259,3 +256,77 @@ body{
 }
 
 
+/* SEARCH STYLE */
+.search-container {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 50px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+  max-width: 500px;
+  width: 100%;
+  margin:auto;
+  margin-top:20px;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 50px;
+}
+
+.search-input::placeholder {
+  color: #aaa;
+}
+
+.search-button {
+  background-color: #ba8300;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+/* .search-button:hover {
+  background-color: #c5aa6a;
+} */
+
+.search-button svg {
+  fill: #fff;
+  color:#fff;
+}
+
+.search-button svg path {
+  fill: currentColor;
+}
+
+
+
+/* FOOTER */
+.footer {
+  background-color: #002147;
+  color: #fff;
+  padding: 40px 20px;
+  margin-top:50px;
+}
+
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  border-top: 1px solid #444;
+  padding-top: 20px;
+}
+
+@media (max-width: 768px) {
+  .footer-bottom {
+      margin-top: 40px;
+  }
+}

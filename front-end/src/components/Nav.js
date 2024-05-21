@@ -8,10 +8,10 @@ const Nav = ()=>{
   }
   return (
     <div>
+      <h2 className='logo'>Dashboard</h2>
       <ul className='nav-ul'>
         <li><Link to="/">Home</Link></li>
         <li><Link to="/add">Add Product</Link></li>
-        <li><Link to="/update">Update Product</Link></li>
       </ul>
       { auth ?<Link className='auth' onClick={logout} to="/login">Logout</Link>: <Link className='auth' to="/login">Login</Link>}
 
