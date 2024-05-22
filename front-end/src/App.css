@@ -224,6 +224,21 @@ body{
   text-align: center;
   padding: 10px;
 }
+.product-list li button{
+  border:none;
+  background-color: transparent;
+  margin-right: 10px;
+}
+.product-list li button .icons{
+   font-size: 20px;
+   color:red;
+   cursor: pointer;
+}
+.product-list li a .icons{
+   font-size: 20px;
+   color:blue;
+   cursor: pointer;
+}
 
 /* Responsive styles */
 @media (max-width: 768px) {

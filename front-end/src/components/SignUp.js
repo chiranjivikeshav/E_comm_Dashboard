@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
+import { toast } from 'react-toastify';
 const SignUp = () => {
 
   const [name, setName] = useState("");
@@ -14,6 +15,13 @@ const SignUp = () => {
     }
   },[])
 
+  useEffect(()=>{
+    if(!name&&!email&&!password){
+        setError(false);
+    }
+   },[name,email,password]);
+
+
   const collectData = async () => {
     if(!name||!email||!password){
       setError(true);
@@ -21,7 +29,7 @@ const SignUp = () => {
     }
 
 
-    const result = await fetch('http://localhost:5000/register', {
+    let result = await fetch('http://localhost:5000/register', {
       method: 'post',
       body: JSON.stringify({ name, email, password }),
       headers: {
@@ -29,12 +37,19 @@ const SignUp = () => {
       }
     });
 
-    if (result.ok) {
+    if (result.status===200) {
+      result = await result.json();
       navigate("/login");
-    } else {
-      console.log("Registration failed");
+      toast.success(result.message)
+    } else if(result.status===400){
+      result = await result.json();
+      toast.info(result.message)
+    }else{
+      result = await result.json();
+      toast.error(result.message)
     }
   }
+
   return (
     <div className="sign-up-card">
       <h1>Register</h1>

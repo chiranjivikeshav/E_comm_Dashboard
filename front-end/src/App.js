@@ -8,10 +8,12 @@ import AddProduct from './components/AddProduct';
 import ProductList from './components/ProductList';
 import UpdateProduct from './components/UpdateProduct';
 import  {BrowserRouter,Routes,Route} from 'react-router-dom';
+import ToastSetup from './components/Toast';
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+      <ToastSetup />
       <Nav/>
       <Routes>
         <Route element={<PrivateComp/>}>
@@ -23,10 +25,11 @@ function App() {
         </Route>
         <Route path="/signup" element ={<SignUp/>}/>
         <Route path="/login" element ={<Login/>}/>
-
+      
       </Routes>
       <Footer/>
       </BrowserRouter>
+      
     </div>
   );
 }

@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { toast } from 'react-toastify';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash, faEdit } from '@fortawesome/free-solid-svg-icons';
 const ProductList = () => {
     const [products, setProducts] = useState([]);
     useEffect(() => {
@@ -7,10 +10,10 @@ const ProductList = () => {
     }, [])
 
     const getProducts = async () => {
-        let result = await fetch('http://localhost:5000/Products',{
-           headers:{
-            authorization:JSON.parse(localStorage.getItem('token'))
-           } 
+        let result = await fetch('http://localhost:5000/Products', {
+            headers: {
+                authorization: JSON.parse(localStorage.getItem('token'))
+            }
         });
         result = await result.json();
         setProducts(result);
@@ -18,24 +21,29 @@ const ProductList = () => {
     const deleteProduct = async (id) => {
         let result = await fetch(`http://localhost:5000/product/${id}`, {
             method: "Delete",
-            headers:{
-                authorization:JSON.parse(localStorage.getItem('token'))
+            headers: {
+                authorization: JSON.parse(localStorage.getItem('token'))
             }
         })
-        result = await result.json();
-        if (result) {
+        if (result.status === 200) {
+            result = await result.json();
             getProducts(result);
+            toast.success(result.message)
+        }
+        else {
+            result = await result.json();
+            toast.error(result.message)
         }
     }
 
     const searchHandle = async (event) => {
         let key = event.target.value;
-        if (key.length == 0) {
+        if (key.length === 0) {
             getProducts();
         } else {
-            let result = await fetch(`http://localhost:5000/search/${key}`,{
-                headers:{
-                    authorization:JSON.parse(localStorage.getItem('token'))
+            let result = await fetch(`http://localhost:5000/search/${key}`, {
+                headers: {
+                    authorization: JSON.parse(localStorage.getItem('token'))
                 }
             })
             result = await result.json();
@@ -81,8 +89,12 @@ const ProductList = () => {
                             <li>{item.category}</li>
                             <li>{item.company}</li>
                             <li>
-                                <button onClick={() => deleteProduct(item._id)}>Delete</button>
-                                <Link to={"/update/" + item._id}>Update</Link>
+                                <button onClick={() => deleteProduct(item._id)}>
+                                    <FontAwesomeIcon className='icons' icon={faTrash} /> 
+                                </button>
+                                <Link to={"/update/" + item._id}>
+                                    <FontAwesomeIcon className='icons' icon={faEdit} />
+                                </Link>
                             </li>
                         </ul>
                     )

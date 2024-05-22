@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams,useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify';
 const UpdateProduct = () => {
     const [name, setName] = useState("")
     const [price, setPrice] = useState("")
@@ -7,7 +8,7 @@ const UpdateProduct = () => {
     const [company, setCompany] = useState("")
     const [error, setError] = useState(false)
     const params = useParams();
-
+    const navigate = useNavigate();
     useEffect(() => {
         getProduct();
     }, [params.id]); // Adding params.id as a dependency to ensure it runs only when id changes
@@ -18,11 +19,18 @@ const UpdateProduct = () => {
                 authorization: JSON.parse(localStorage.getItem('token'))
             }
         });
-        result = await result.json();
-        setName(result.name);
-        setPrice(result.price);
-        setCategory(result.category);
-        setCompany(result.company);
+        if (result.status === 200) {
+            result = await result.json();
+            setName(result.name);
+            setPrice(result.price);
+            setCategory(result.category);
+            setCompany(result.company);
+        }else{
+            result = await result.json();
+            navigate('/')
+            toast.error(result.message)
+        }
+
     }
 
     const updateProduct = async () => {
@@ -34,7 +42,14 @@ const UpdateProduct = () => {
                 authorization: JSON.parse(localStorage.getItem('token'))
             }
         });
-        result = await result.json();
+        if (result.status === 200) {
+            result = await result.json();
+            toast.success(result.message)
+        }
+        else {
+            result = await result.json();
+            toast.error(result.message)
+        }
     }
     return (
         <div className='add_product'>
