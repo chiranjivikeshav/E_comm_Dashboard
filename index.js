@@ -1,8 +1,9 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+require('dotenv').config();
 const jwt = require('jsonwebtoken');
-const jwtKey = 'e-comm';
+const jwtKey = process.env.JWT_SECRET_KEY;
 app.use(express.json());
 app.use(cors({
     origin: 'http://localhost:3000'
